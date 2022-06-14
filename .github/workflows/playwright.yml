@@ -1,9 +1,18 @@
+# This is a basic workflow to help you get started with Actions
+
 name: Playwright Tests
+
+# Controls when the workflow will run
 on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: [ main, master ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ main, master ]
+    branches: [ "main" ]
+  schedule: 
+    # nightly
+    - cron: '0 0 * * *'
+
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -28,5 +37,5 @@ jobs:
       run: npx playwright install --with-deps
     - name: Build production build
       run: npm run build
-    - name: Run playwright tests
-      run: npx playwright test
+    - name: Run your tests
+      run: npm run playwright_test
